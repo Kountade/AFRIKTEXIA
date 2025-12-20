@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-pxpa20!--fyckdazmq6jib#oh&jqh8hv9r(ikg+&&=epy2j-1y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 ALLOWED_HOSTS = ["afriktexiabackend.onrender.com",
                  "localhost", "127.0.0.1"]
 
@@ -50,7 +50,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -60,9 +59,13 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "http://192.168.0.161:3000",
+    "https://afriktexiabackend.onrender.com"
+
 ]
+
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
