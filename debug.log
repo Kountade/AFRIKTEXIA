@@ -1,0 +1,257 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\authentification\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"OPTIONS /dashboard/ HTTP/1.1" 200 0
+"OPTIONS /dashboard/ HTTP/1.1" 200 0
+"GET /dashboard/ HTTP/1.1" 200 2155
+"GET /dashboard/ HTTP/1.1" 200 2155
+"OPTIONS /ventes/ HTTP/1.1" 200 0
+"OPTIONS /clients/ HTTP/1.1" 200 0
+"OPTIONS /produits/ HTTP/1.1" 200 0
+"OPTIONS /ventes/ HTTP/1.1" 200 0
+"OPTIONS /produits/ HTTP/1.1" 200 0
+"OPTIONS /clients/ HTTP/1.1" 200 0
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /ventes/ HTTP/1.1" 200 3601
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\urls.py changed, reloading.
+Watching for file changes with StatReloader
+"OPTIONS /ventes/ HTTP/1.1" 200 0
+"OPTIONS /clients/ HTTP/1.1" 200 0
+"OPTIONS /produits/ HTTP/1.1" 200 0
+Unauthorized: /clients/
+Unauthorized: /ventes/
+Unauthorized: /produits/
+"GET /clients/ HTTP/1.1" 401 30
+"GET /ventes/ HTTP/1.1" 401 30
+"GET /produits/ HTTP/1.1" 401 30
+"OPTIONS /login/ HTTP/1.1" 200 0
+"POST /login/ HTTP/1.1" 200 153
+"OPTIONS /dashboard/ HTTP/1.1" 200 0
+"OPTIONS /dashboard/ HTTP/1.1" 200 0
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /clients/ HTTP/1.1" 200 535
+"GET /clients/ HTTP/1.1" 200 535
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+"GET /clients/ HTTP/1.1" 200 1223
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 3601
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"POST /login/ HTTP/1.1" 200 153
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /produits/ HTTP/1.1" 200 825
+"GET /ventes/ HTTP/1.1" 200 922
+"OPTIONS /login/ HTTP/1.1" 200 0
+"POST /login/ HTTP/1.1" 200 149
+"GET /dashboard/ HTTP/1.1" 200 2155
+"GET /dashboard/ HTTP/1.1" 200 2155
+"OPTIONS /categories/ HTTP/1.1" 200 0
+"GET /categories/ HTTP/1.1" 200 762
+"GET /categories/ HTTP/1.1" 200 762
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /login/ HTTP/1.1" 200 153
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /clients/ HTTP/1.1" 200 535
+"GET /ventes/ HTTP/1.1" 200 922
+"GET /produits/ HTTP/1.1" 200 825
+"GET /categories/ HTTP/1.1" 200 762
+"POST /login/ HTTP/1.1" 200 153
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /dashboard/ HTTP/1.1" 200 1046
+"GET /clients/ HTTP/1.1" 200 535
+"GET /clients/ HTTP/1.1" 200 535
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Kounta\Programmation\Python\Django5V\gestion_dj_re\backend\authentification\users\models.py changed, reloading.
