@@ -27,6 +27,8 @@ SECRET_KEY = "django-insecure-pxpa20!--fyckdazmq6jib#oh&jqh8hv9r(ikg+&&=epy2j-1y
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["afriktexiabackend.onrender.com",
+                 "localhost", "127.0.0.1"]
 
 
 # Application definition
