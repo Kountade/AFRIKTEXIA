@@ -26,7 +26,6 @@ SECRET_KEY = "django-insecure-pxpa20!--fyckdazmq6jib#oh&jqh8hv9r(ikg+&&=epy2j-1y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = ["afriktexiabackend.onrender.com",
                  "localhost", "127.0.0.1"]
 
@@ -45,7 +44,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "django_rest_passwordreset",
-
 ]
 
 MIDDLEWARE = [
@@ -59,19 +57,24 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
+# Optionnel: Ajoutez WhiteNoise seulement si vous l'avez installé
+# "whitenoise.middleware.WhiteNoiseMiddleware",  # À ajouter après SecurityMiddleware
+
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://192.168.0.161:3000",
-    "https://afriktexiabackend.onrender.com"
-
+    "https://afriktexiabackend.onrender.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
+
+# Pour le développement, vous pouvez autoriser toutes les origines
+CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-
 AUTHENTICATION_BACKENDS = [
-    # 'users.authback.EmailBackend',
-    "django.contrib.auth.backends.ModelBackend",  # this line fixed my problem
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 ROOT_URLCONF = "authentification.urls"
@@ -79,7 +82,7 @@ ROOT_URLCONF = "authentification.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        'DIRS': [BASE_DIR/"templates"],
+        'DIRS': [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -94,7 +97,10 @@ TEMPLATES = [
 WSGI_APPLICATION = "authentification.wsgi.application"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 # Database
@@ -126,9 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# the email settings
-
-
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -136,12 +140,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bounamakountagoudiaby@gmail.com'
 EMAIL_HOST_PASSWORD = 'ngqjlxsfefxqtier'
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "fr-fr"  # Changé en français
 
 TIME_ZONE = "UTC"
 
@@ -153,14 +155,38 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-
-STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Configuration pour les images
+IMAGE_MAX_SIZE = (800, 800)  # Taille max des images
+THUMBNAIL_SIZE = (150, 150)  # Taille des miniatures
+
+# Pour gérer les fichiers statiques en production
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}

@@ -3,6 +3,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from .models import *
 
+
 @receiver(post_save, sender=Produit)
 def log_produit_save(sender, instance, created, **kwargs):
     action = 'creation' if created else 'modification'
@@ -19,6 +20,7 @@ def log_produit_save(sender, instance, created, **kwargs):
         }
     )
 
+
 @receiver(post_save, sender=Vente)
 def log_vente(sender, instance, created, **kwargs):
     if created:
@@ -33,6 +35,7 @@ def log_vente(sender, instance, created, **kwargs):
                 'montant_total': str(instance.montant_total)
             }
         )
+
 
 @receiver(post_save, sender=MouvementStock)
 def log_mouvement_stock(sender, instance, created, **kwargs):

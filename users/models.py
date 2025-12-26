@@ -87,17 +87,33 @@ class Fournisseur(models.Model):
         return self.nom
 
 
+# ... autres imports ...
+
+
 class Produit(models.Model):
     code = models.CharField(max_length=50, unique=True)
     nom = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     categorie = models.ForeignKey(
         Categorie, on_delete=models.SET_NULL, null=True)
-    prix_achat = models.DecimalField(max_digits=10, decimal_places=2)
+    prix_achat = models.DecimalField(
+        max_digits=10, decimal_places=2)  # CORRIGÉ ICI
     prix_vente = models.DecimalField(max_digits=10, decimal_places=2)
     stock_alerte = models.IntegerField(default=5)
     fournisseur = models.ForeignKey(
         Fournisseur, on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(
+        upload_to='produits/images/',
+        null=True,
+        blank=True,
+        verbose_name='Image du produit'
+    )
+    thumbnail = models.ImageField(
+        upload_to='produits/thumbnails/',
+        null=True,
+        blank=True,
+        editable=False  # Généré automatiquement
+    )
     created_by = models.ForeignKey(
         CustomUser, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -119,20 +135,17 @@ class Produit(models.Model):
         )['total'] or 0
         return total
 
-    # AJOUTEZ CES PROPRIÉTÉS
-    @property
-    def stock_reserve_property(self):
-        """Version propriété pour stock_reserve"""
-        return self.stock_reserve()
-
+    # PROPRIÉTÉS (ajoutez @property)
     @property
     def stock_disponible(self):
         """Stock disponible pour vente"""
         return self.stock_actuel() - self.stock_reserve()
 
+    @property
     def en_rupture(self):
         return self.stock_disponible <= 0
 
+    @property
     def stock_faible(self):
         return 0 < self.stock_disponible <= self.stock_alerte
 

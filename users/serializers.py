@@ -1,3 +1,6 @@
+from .models import Produit, StockEntrepot
+import os
+from .models import Produit
 from .models import TransfertEntrepot, LigneTransfert, StockEntrepot
 from django.utils import timezone
 from rest_framework import serializers
@@ -79,28 +82,148 @@ class FournisseurSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_by', 'created_at')
 
 
+# Dans serializers.py, modifiez ProduitSerializer
+
+
 class ProduitSerializer(serializers.ModelSerializer):
-    stock_actuel = serializers.ReadOnlyField()
-    en_rupture = serializers.ReadOnlyField()
-    stock_faible = serializers.ReadOnlyField()
+    stock_actuel = serializers.SerializerMethodField()
+    en_rupture = serializers.SerializerMethodField()
+    stock_faible = serializers.SerializerMethodField()
     categorie_nom = serializers.CharField(
         source='categorie.nom', read_only=True)
     fournisseur_nom = serializers.CharField(
         source='fournisseur.nom', read_only=True)
     created_by_email = serializers.CharField(
         source='created_by.email', read_only=True)
-    # Nouveau champ pour afficher les stocks par entrepôt
     stocks_entrepots = serializers.SerializerMethodField()
+
+    # Champs pour les images
+    image_url = serializers.SerializerMethodField()
+    thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Produit
         fields = '__all__'
-        read_only_fields = ('created_by', 'created_at')
+        read_only_fields = ('created_by', 'created_at', 'thumbnail')
+
+    def get_stock_actuel(self, obj):
+        return obj.stock_actuel()
+
+    def get_en_rupture(self, obj):
+        return obj.en_rupture
+
+    def get_stock_faible(self, obj):
+        return obj.stock_faible
 
     def get_stocks_entrepots(self, obj):
         """Retourne les stocks du produit par entrepôt"""
         stocks = StockEntrepot.objects.filter(produit=obj)
+        from .serializers import StockEntrepotSerializer
         return StockEntrepotSerializer(stocks, many=True, read_only=True).data
+
+    def get_image_url(self, obj):
+        """Retourne l'URL complète de l'image"""
+        if obj.image:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image.url)
+            return obj.image.url
+        return None
+
+    def get_thumbnail_url(self, obj):
+        """Retourne l'URL complète de la miniature"""
+        if obj.thumbnail:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.thumbnail.url)
+            return obj.thumbnail.url
+        elif obj.image:
+            # Si pas de miniature mais une image existe
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image.url)
+            return obj.image.url
+        return None
+
+    def create(self, validated_data):
+        """Création avec gestion d'image"""
+        try:
+            image = validated_data.get('image')
+
+            # Créer le produit
+            produit = Produit.objects.create(**validated_data)
+
+            # Si une image existe, la sauvegarder
+            if image:
+                self._process_image(produit, image)
+
+            return produit
+        except Exception as e:
+            raise serializers.ValidationError(
+                f"Erreur lors de la création: {str(e)}")
+
+    def update(self, instance, validated_data):
+        """Mise à jour avec gestion d'image"""
+        try:
+            # Extraire l'image si elle existe
+            image = validated_data.pop('image', None)
+
+            # Mettre à jour les autres champs
+            for attr, value in validated_data.items():
+                setattr(instance, attr, value)
+
+            # Sauvegarder
+            instance.save()
+
+            # Si nouvelle image, la traiter
+            if image is not None:
+                self._process_image(instance, image)
+
+            return instance
+        except Exception as e:
+            raise serializers.ValidationError(
+                f"Erreur lors de la mise à jour: {str(e)}")
+
+    def _process_image(self, produit, image=None):
+        """Traite l'image : redimensionne et génère une miniature"""
+        try:
+            if image is None:
+                image = produit.image
+
+            if image:
+                # Sauvegarder l'image
+                produit.image.save(
+                    image.name,
+                    image,
+                    save=True
+                )
+
+                # Générer une miniature (simplifié)
+                from PIL import Image as PILImage
+                import io
+                from django.core.files.base import ContentFile
+
+                # Ouvrir l'image
+                img = PILImage.open(produit.image.path)
+
+                # Créer une miniature
+                img.thumbnail((150, 150))
+
+                # Sauvegarder la miniature
+                thumb_io = io.BytesIO()
+                img.save(thumb_io, format='JPEG')
+
+                # Sauvegarder dans le modèle
+                produit.thumbnail.save(
+                    f"thumb_{os.path.basename(produit.image.name)}",
+                    ContentFile(thumb_io.getvalue()),
+                    save=True
+                )
+
+        except Exception as e:
+            print(f"Erreur lors du traitement de l'image: {e}")
+            # Ne pas échouer si le traitement d'image échoue
+            pass
 
 
 class ClientSerializer(serializers.ModelSerializer):

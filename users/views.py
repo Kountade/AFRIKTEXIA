@@ -204,6 +204,12 @@ class ProduitViewSet(viewsets.ModelViewSet):
     serializer_class = ProduitSerializer
     permission_classes = [IsAdminOrVendeur]
 
+    def get_serializer_context(self):
+        """Ajoute le contexte de la requête au serializer"""
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
     def get_queryset(self):
         queryset = Produit.objects.all()
 
