@@ -1,3 +1,5 @@
+from django.db.models import F
+from django.db.models.signals import post_save
 from django.db.models.signals import post_save, post_delete
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -728,7 +730,196 @@ def log_client_save(sender, instance, created, **kwargs):
     )
 
 
+@receiver(post_save, sender=MouvementStock)
+def update_stock_on_mouvement(sender, instance, created, **kwargs):
+    """
+    Met à jour le stock dans StockEntrepot lorsqu'un mouvement est créé
+    """
+    # Seulement si c'est une nouvelle création ET si l'entrepôt est spécifié
+    if not created or not instance.entrepot:
+        return
+
+    try:
+        with transaction.atomic():
+            # Récupérer le produit et l'entrepôt
+            produit = instance.produit
+            entrepot = instance.entrepot
+
+            # DEBUG: Afficher les informations du mouvement
+            print(f"\n=== MISE À JOUR DU STOCK ===")
+            print(f"Produit: {produit.nom}")
+            print(f"Entrepôt: {entrepot.nom}")
+            print(f"Type mouvement: {instance.type_mouvement}")
+            print(f"Quantité: {instance.quantite}")
+
+            # Chercher ou créer le stock pour cet entrepôt et produit
+            stock_entrepot, created_stock = StockEntrepot.objects.get_or_create(
+                entrepot=entrepot,
+                produit=produit,
+                defaults={'quantite': 0}
+            )
+
+            # DEBUG: Afficher l'état actuel du stock
+            print(f"Stock actuel: {stock_entrepot.quantite}")
+
+            # Mettre à jour la quantité selon le type de mouvement
+            if instance.type_mouvement == 'entree':
+                # Pour une entrée, on AJOUTE la quantité
+                ancien_stock = stock_entrepot.quantite
+                stock_entrepot.quantite = F('quantite') + instance.quantite
+                print(f"Type: ENTRÉE -> Ajout de {instance.quantite}")
+
+            elif instance.type_mouvement == 'sortie':
+                # Pour une sortie, on SOUSTRAIT la quantité
+                ancien_stock = stock_entrepot.quantite
+                stock_entrepot.quantite = F('quantite') - instance.quantite
+                print(f"Type: SORTIE -> Retrait de {instance.quantite}")
+
+            elif instance.type_mouvement == 'ajustement':
+                # Pour un ajustement, on DÉFINIT la nouvelle quantité
+                ancien_stock = stock_entrepot.quantite
+                stock_entrepot.quantite = instance.quantite
+                print(
+                    f"Type: AJUSTEMENT -> Nouvelle quantité: {instance.quantite}")
+
+            else:
+                # Pour les transferts, la logique est gérée dans TransfertEntrepot.confirmer_transfert()
+                print(
+                    f"Type: {instance.type_mouvement.upper()} -> Non géré par ce signal")
+                return
+
+            # Sauvegarder les modifications
+            stock_entrepot.save()
+
+            # Rafraîchir l'objet pour obtenir les valeurs mises à jour
+            stock_entrepot.refresh_from_db()
+
+            # DEBUG: Afficher le nouveau stock
+            print(f"Nouveau stock: {stock_entrepot.quantite}")
+            print(f"===========================\n")
+
+            # Créer un log d'audit
+            AuditLog.objects.create(
+                user=instance.created_by,
+                action='mouvement_stock',
+                modele='StockEntrepot',
+                objet_id=stock_entrepot.id,
+                details={
+                    'produit': produit.nom,
+                    'produit_id': produit.id,
+                    'entrepot': entrepot.nom,
+                    'entrepot_id': entrepot.id,
+                    'type_mouvement': instance.type_mouvement,
+                    'quantite_mouvement': instance.quantite,
+                    'ancien_stock': ancien_stock,
+                    'nouveau_stock': stock_entrepot.quantite,
+                    'mouvement_id': instance.id
+                }
+            )
+
+    except Exception as e:
+        # Log l'erreur
+        print(f"❌ ERREUR lors de la mise à jour du stock: {str(e)}")
+        import traceback
+        traceback.print_exc()
+
 # Signal pour le reset de password
+
+
+@receiver(post_save, sender=MouvementStock)
+def update_stock_on_mouvement(sender, instance, created, **kwargs):
+    """
+    Met à jour le stock dans StockEntrepot lorsqu'un mouvement est créé
+    """
+    # Seulement si c'est une nouvelle création ET si l'entrepôt est spécifié
+    if not created or not instance.entrepot:
+        return
+
+    try:
+        with transaction.atomic():
+            # Récupérer le produit et l'entrepôt
+            produit = instance.produit
+            entrepot = instance.entrepot
+
+            # DEBUG: Afficher les informations du mouvement
+            print(f"\n=== MISE À JOUR DU STOCK ===")
+            print(f"Produit: {produit.nom}")
+            print(f"Entrepôt: {entrepot.nom}")
+            print(f"Type mouvement: {instance.type_mouvement}")
+            print(f"Quantité: {instance.quantite}")
+
+            # Chercher ou créer le stock pour cet entrepôt et produit
+            stock_entrepot, created_stock = StockEntrepot.objects.get_or_create(
+                entrepot=entrepot,
+                produit=produit,
+                defaults={'quantite': 0}
+            )
+
+            # DEBUG: Afficher l'état actuel du stock
+            print(f"Stock actuel: {stock_entrepot.quantite}")
+
+            # Mettre à jour la quantité selon le type de mouvement
+            if instance.type_mouvement == 'entree':
+                # Pour une entrée, on AJOUTE la quantité
+                ancien_stock = stock_entrepot.quantite
+                stock_entrepot.quantite = F('quantite') + instance.quantite
+                print(f"Type: ENTRÉE -> Ajout de {instance.quantite}")
+
+            elif instance.type_mouvement == 'sortie':
+                # Pour une sortie, on SOUSTRAIT la quantité
+                ancien_stock = stock_entrepot.quantite
+                stock_entrepot.quantite = F('quantite') - instance.quantite
+                print(f"Type: SORTIE -> Retrait de {instance.quantite}")
+
+            elif instance.type_mouvement == 'ajustement':
+                # Pour un ajustement, on DÉFINIT la nouvelle quantité
+                ancien_stock = stock_entrepot.quantite
+                stock_entrepot.quantite = instance.quantite
+                print(
+                    f"Type: AJUSTEMENT -> Nouvelle quantité: {instance.quantite}")
+
+            else:
+                # Pour les transferts, la logique est gérée dans TransfertEntrepot.confirmer_transfert()
+                print(
+                    f"Type: {instance.type_mouvement.upper()} -> Non géré par ce signal")
+                return
+
+            # Sauvegarder les modifications
+            stock_entrepot.save()
+
+            # Rafraîchir l'objet pour obtenir les valeurs mises à jour
+            stock_entrepot.refresh_from_db()
+
+            # DEBUG: Afficher le nouveau stock
+            print(f"Nouveau stock: {stock_entrepot.quantite}")
+            print(f"===========================\n")
+
+            # Créer un log d'audit
+            AuditLog.objects.create(
+                user=instance.created_by,
+                action='mouvement_stock',
+                modele='StockEntrepot',
+                objet_id=stock_entrepot.id,
+                details={
+                    'produit': produit.nom,
+                    'produit_id': produit.id,
+                    'entrepot': entrepot.nom,
+                    'entrepot_id': entrepot.id,
+                    'type_mouvement': instance.type_mouvement,
+                    'quantite_mouvement': instance.quantite,
+                    'ancien_stock': ancien_stock,
+                    'nouveau_stock': stock_entrepot.quantite,
+                    'mouvement_id': instance.id
+                }
+            )
+
+    except Exception as e:
+        # Log l'erreur
+        print(f"❌ ERREUR lors de la mise à jour du stock: {str(e)}")
+        import traceback
+        traceback.print_exc()
+
+
 @receiver(reset_password_token_created)
 def password_reset_token_created(reset_password_token, *args, **kwargs):
     sitelink = "http://localhost:5173/"
