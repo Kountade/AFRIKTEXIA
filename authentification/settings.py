@@ -25,8 +25,8 @@ SECRET_KEY = "django-insecure-pxpa20!--fyckdazmq6jib#oh&jqh8hv9r(ikg+&&=epy2j-1y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['afriktexiabackend.onrender.com', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://afriktexiabackend.onrender.com']
+ALLOWED_HOSTS = ['stock-gestion-qtpy.onrender.com', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://stock-gestion-qtpy.onrender.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
@@ -64,7 +64,7 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://192.168.0.161:3000",
-    "https://afriktexiabackend.onrender.com",
+    "https://stock-gestion-qtpy.onrender.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
